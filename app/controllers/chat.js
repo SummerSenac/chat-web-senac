@@ -1,5 +1,4 @@
 module.exports.iniciaChat = function(application, req, res){
-
     var dadosForm = req.body;
 
     req.assert('apelido', 'Nome ou Apelido é obrigatório').notEmpty();
