@@ -1,43 +1,37 @@
+
+const { body, validationResult } = require('express-validator')
+
 module.exports = function (application) {
-    application.post('/chat', function (req, res) {
-        var dadosForm = req.body;
+    application.post('/chat', 
+    body('apelido').notEmpty().withMessage('Não pode ser vazio'), 
+    body('apelido').isLength({ min: 5 }).withMessage('Tem que ser maior que 5'),
+        function (req, res) {
+            var dadosForm = req.body;
+            console.log('dados', dadosForm);
 
-        req.assert('apelido', 'Nome ou apelido é obrigatório').notEmpty();
-        req.assert('apelido', 'Nome ou apelido deve conter entre 3 e 15 caracteres').len(3, 15);
+            const erros = validationResult(req);
 
-        var erros = req.validationErrors();
+            if (erros.errors.toString() !== '') {
+                res.render("index", { validacao: erros })
+                return;
+            }
 
-        if (erros) {
-            res.render("index", { validacao: erros })
-            return;
-        }
+            // emitindo mesagem para clientes
+            application.get('io').emit(
+                'msgParaCliente',
+                { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat' }
+            )
 
-        application.get('io').emit(
-            'msgParaCliente',
-            { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat' }
-        )
-
-        res.render("chat", { dadosForm: dadosForm });
-    });
+            res.render("chat", { dadosForm: dadosForm });
+        });
 
     application.get('/chat', function (req, res) {
-        var dadosForm = req.body;
 
-        req.assert('apelido', 'Nome ou apelido é obrigatório').notEmpty();
-        req.assert('apelido', 'Nome ou apelido deve conter entre 3 e 15 caracteres').len(3, 15);
+            application.get('io').emit(
+                'msgParaCliente',
+                { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat' }
+            )
 
-        var erros = req.validationErrors();
-
-        if (erros) {
-            res.render("index", { validacao: erros })
-            return;
-        }
-
-        application.get('io').emit(
-            'msgParaCliente',
-            { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat' }
-        )
-
-        res.render("chat", { dadosForm: dadosForm });
-    });
+            res.render("chat", { dadosForm: dadosForm });
+        });
 }
