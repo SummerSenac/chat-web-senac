@@ -102,7 +102,7 @@ img {
 :root {
     --darkColor: #000000;
     --darkColor2: #f5f5f5;
-    --darkColor3: #ffffff;
+    --darkColor3: #000000;
     --textColor: #fff;
 }
 
@@ -168,6 +168,7 @@ input[type="checkbox"] {
     border-radius: 20px;
     overflow: hidden;
     transition: ease-in 0.5s;
+    left: 50px;
 }
 
 .check:before {
@@ -175,7 +176,7 @@ input[type="checkbox"] {
     position: absolute;
     top: 2px;
     left: 2px;
-    background: var(--darkColor3);
+    background: rgb(8, 0, 0);
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -191,7 +192,7 @@ input[type="checkbox"]:checked~.check:before {
     position: absolute;
     top: 2px;
     right: 2px;
-    background: rgb(8, 0, 0);
+    background: white;
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -204,3 +205,4 @@ input[type="checkbox"]:checked~.check:after {
 }
 
 /* ./DARK MODE CHECKBOX */
+
