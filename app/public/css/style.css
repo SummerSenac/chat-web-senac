@@ -1,4 +1,4 @@
-.body {
+body {
     background-color: #444;
     background: url('../images/login-bg.jpg');  
 }
@@ -99,110 +99,7 @@ img {
 	/* color:#8B7777; */
 }
 
-:root {
-    --darkColor: #000000;
-    --darkColor2: #f5f5f5;
-    --darkColor3: #000000;
-    --textColor: #fff;
-}
-
-form {
-    display: contents;
-}
 
 
 
-.list-group-item-action small {
-    display: block;
-    color: var(--gray);
-}
-
-/* DARK MODE */
-body.dark {
-    background-color: var(--darkColor);
-    color: var(--textColor);
-}
-
-body.dark .input-group-text {
-    background-color: var(--darkColor2);
-    border-color: var(--darkColor2);
-    color: var(--textColor);
-}
-
-body.dark .form-control {
-    background-color: var(--darkColor);
-    border-color: var(--darkColor);
-    color: var(--textColor);
-}
-
-body.dark .list-group-item-action {
-    background-color: var(--darkColor3);
-    color: var(--textColor);
-}
-
-body.dark .active {
-    background-color: var(--blue);
-}
-
-body.dark .active small {
-    color: var(--yellow);
-}
-
-/* ./DARK MODE */
-
-
-/* DARK MODE CHECKBOX */
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    visibility: hidden;
-    display: none;
-}
-
-.check {
-    position: relative;
-    display: block;
-    width: 40px;
-    height: 20px;
-    background: var(--gray);
-    cursor: pointer;
-    border-radius: 20px;
-    overflow: hidden;
-    transition: ease-in 0.5s;
-    left: 50px;
-}
-
-.check:before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    background: rgb(8, 0, 0);
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    transition: 0.5s;
-}
-
-input[type="checkbox"]:checked~.check:before {
-    transform: translateX(-50px);
-}
-
-.check:after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: white;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    transition: 0.5s;
-    transform: translateX(50px);
-}
-
-input[type="checkbox"]:checked~.check:after {
-    transform: translateX(0px);
-}
-
-/* ./DARK MODE CHECKBOX */
 
