@@ -99,3 +99,6 @@ img {
 	color:#8B7777;
 }
 #emojiPickerWrap {margin:10px 0 0 0;}
+.tooltip:not(.shown) {
+    display: none;
+}

@@ -51,15 +51,14 @@
 			$("#btn_navbar_toggle").attr("aria-expanded", "false");
 			$("#navbar-collapse-1").attr("aria-expanded", "false");
 		}
-		$(document).ready(function (e) {
+		$(document).ready(function () {
 
 			$('.input-default').emojiPicker();
 
 			$(".emojiable-option").on("keyup", function () {
-				//console.log("emoji added, input val() is: " + $(this).val());
+				// console.log("emoji added, input val() is: " + $(this).val());
 			});
 		});
-
 
 	</script>
 </head>
@@ -118,12 +117,13 @@
 
 				<div class="col-md-12">
 					<div class="input-group">
-						<input type="text" placeholder="Mensagem" id="mensagem" class="input-default"
+						<input type="text"  placeholder="Mensagem" id="mensagem" class="input-default"
 							class="emojiable-option">
 						<input type="hidden" value="<%=dadosForm.apelido%>" id="apelido">
 						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="button" id="enviar_mensagem">Enter</button>
+							</div>
 						</span>
 					</div>
 				</div>
@@ -134,6 +134,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 		crossorigin="anonymous"></script>
+
+	<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
@@ -154,8 +157,6 @@
 			$('#apelido_atualizado_nos_clientes').val(1);
 
 		});
-
-
 
 		socket.on('msgParaCliente', function (data) {
 			var html = '';
