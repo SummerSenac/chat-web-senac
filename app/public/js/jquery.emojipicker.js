@@ -213,7 +213,7 @@
       };
 
       this.$picker.css({
-        top: diffOffset.top,
+        top: 605,
         left: diffOffset.left
       });
 
