@@ -51,7 +51,6 @@
 			$("#btn_navbar_toggle").attr("aria-expanded", "false");
 			$("#navbar-collapse-1").attr("aria-expanded", "false");
 		}
-
 		$(document).ready(function (e) {
 
 			$('.input-default').emojiPicker();
@@ -60,6 +59,8 @@
 				//console.log("emoji added, input val() is: " + $(this).val());
 			});
 		});
+
+
 	</script>
 </head>
 
@@ -122,10 +123,8 @@
 						<input type="hidden" value="<%=dadosForm.apelido%>" id="apelido">
 						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button" id="enviar_mensagem">></button>
-
+							<button class="btn btn-default" type="button" id="enviar_mensagem">Enter</button>
 						</span>
-
 					</div>
 				</div>
 			</div>
@@ -153,11 +152,7 @@
 
 			$('#mensagem').val("");
 			$('#apelido_atualizado_nos_clientes').val(1);
-			$('.input-default').emojiPicker();
 
-			$(".emojiable-option").on("keyup", function () {
-				//console.log("emoji added, input val() is: " + $(this).val());
-			});
 		});
 
 
