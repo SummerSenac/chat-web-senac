@@ -1,6 +1,6 @@
 var firebase = require('../firebase')
 
-const db = firebase.collection("/tutorials");
+const db = firebase.collection("/mensagens");
 
 class DataService {
   getAll() {
