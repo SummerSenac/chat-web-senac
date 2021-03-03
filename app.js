@@ -1,7 +1,6 @@
 /* importar as configurações do servidor */
 var app = require('./config/server');
-
-
+var DataService = require('./services/DataService');
 /* parametrizar a porta de escuta */
 var server = app.listen(process.env.PORT || 5000, function () {
 	console.log('Servidor online');
@@ -20,6 +19,21 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('msgParaServidor', function (data) {
+		console.log(data)
+		var {apelido, mensagem} = data
+		var data2 = {
+			apelido, 
+			mensagem
+		}
+
+		DataService.create(data2)
+			.then(() => {
+				console.log("Created new item successfully!");
+				this.submitted = true;
+			})
+			.catch(e => {
+				console.log(e);
+			});
 
 		var avaliar = data.mensagem
 		switch (avaliar) {
@@ -37,19 +51,19 @@ io.on('connection', function (socket) {
 					'msgParaCliente',
 					{ apelido: data.apelido, mensagem: data.mensagem }
 				);
-		
+
 				socket.broadcast.emit(
 					'msgParaCliente',
 					{ apelido: data.apelido, mensagem: data.mensagem }
 				);
-		
+
 				/* participantes */
 				if (parseInt(data.apelido_atualizado_nos_clientes) == 0) {
 					socket.emit(
 						'participantesParaCliente',
 						{ apelido: data.apelido }
 					);
-		
+
 					socket.broadcast.emit(
 						'participantesParaCliente',
 						{ apelido: data.apelido }
