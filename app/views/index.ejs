@@ -1,61 +1,157 @@
 <!DOCTYPE HTML>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
 
-		<title>Multiroom Chat</title>
-		
-		<!-- bootstrap - link cdn -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	
-		<!-- estilo -->
-		<link href="css/style.css" rel="stylesheet">
-	</head>
+<head>
+	<meta charset="UTF-8">
 
-	<body>
+	<title>Multiroom Chat</title>
 
+	<!-- JQUERY -->
+	<script src="js/jquery-2.2.1.js"></script>
+
+	<!-- bootstrap - link cdn -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- estilo -->
+	<link href="css/style.css" rel="stylesheet">
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#exibe_chat").click(function () {
+				$("#conversa").show();
+				$("#participantes").hide();
+				ocultaNavbar();
+			});
+			$("#exibe_participantes").click(function () {
+				$("#participantes").show();
+				$("#conversa").hide();
+				ocultaNavbar();
+			});
+		});
+		function ocultaNavbar() {
+			$("#btn_navbar_toggle").attr("class", "navbar-toggle collapsed");
+			$("#navbar-collapse-1").attr("class", "navbar-collapse collapse");
+			$("#btn_navbar_toggle").attr("aria-expanded", "false");
+			$("#navbar-collapse-1").attr("aria-expanded", "false");
+		}
+	</script>
+</head>
+
+<body>
+
+
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
-            <div class="row vertical-offset-80">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="panel panel-default">
-                    	<div class="panel-heading">                                
-                            <div class="row-fluid user-row">
-                                <img src="images/multiroom_chat_2.png" class="img-responsive" alt="Multiroom Chat"/>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <form accept-charset="UTF-8" role="form" class="form-signin" action="/chat" method="post">
-                                <fieldset>
-                                    <label class="panel-login">
-                                        <div class="login_result"></div>
-                                    </label>
-                                    <input class="form-control" placeholder="Nome ou apelido" id="apelido" name="apelido" type="text">
-                                    <br></br>
-                                    <input class="btn btn-lg btn-success btn-block" type="submit" id="entrar" value="Entrar »">
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1"
+					id="btn_navbar_toggle">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Multiroom Chat</a>
+			</div>
 
-                    <div>
-                        <% if(validacao.errors.length > 0) {%>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="alert alert-danger">
-                                        <strong>Atenção!</strong>
-                                        <ul>
-                                            <% for(var i = 0; i < validacao.errors.length; i++) { %>
-                                                <li><%=validacao.errors[i].msg%></li>
-                                            <% } %>
-                                        </ul>   
-                                    </div>
-                                </div>
-                            </div>
-                        <% } %>
-                    </div>
-                </div>
-            </div>
-        </div>
-		
-	</body>
+
+			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="#" id="exibe_chat">Chat</a>
+					</li>
+					<li>
+						<a href="#" id="exibe_participantes">Participantes</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row conversa" id="conversa">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" id="dialogos">
+			</div>
+			<div class="col-md-1"></div>
+
+		</div>
+
+		<div class="row participantes" id="participantes" style="display:none">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" id="pessoas">
+			</div>
+			<div class="col-md-1"></div>
+
+		</div>
+	</div>
+
+	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+		<div class="container">
+			<div class="panel-body campo-mensagem">
+
+				<div class="col-md-12">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
+						<input type="hidden" value="<%=dadosForm.apelido%>" id="apelido">
+						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button" id="enviar_mensagem">></button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+		crossorigin="anonymous"></script>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io('http://localhost:5000');
+		function pegaHora() {
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			return h + ":" + m
+		}
+		$('#enviar_mensagem').click(function () {
+			socket.emit(
+				'msgParaServidor',
+				{
+					apelido: $('#apelido').val(),
+					mensagem: $('#mensagem').val(),
+					hora: pegaHora(),
+					apelido_atualizado_nos_clientes: $('#apelido_atualizado_nos_clientes').val()
+				}
+			);
+			$('#mensagem').val("");
+			$('#apelido_atualizado_nos_clientes').val(1);
+		});
+		socket.on('msgParaCliente', function (data) {
+			console.log('recebido: ', data);
+			var html = '';
+			html += '<div class="dialogo">';
+			html += '<h4>' + data.apelido + '   '+
+				'<span style="position: absolute; right: 0px; margin-right: 24px;">' + 
+					data.hora +'</span>'+ '</h4>';
+			html += '<p>' + data.mensagem + '</p>';
+			// html += '<p>' + data.hora + '</p>';
+			html += '</div>';
+			$('#dialogos').append(html);
+			window.scrollTo(0, document.body.scrollHeight);
+		});
+		socket.on('participantesParaCliente', function (data) {
+			var html = '';
+			html += '<span class="participante">';
+			html += '<img src="images/ico_usuario.png">';
+			html += data.apelido;
+			html += '</span>';
+			$('#pessoas').append(html);
+		});
+	</script>
+</body>
+
 </html>
