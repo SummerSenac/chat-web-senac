@@ -5,17 +5,17 @@ module.exports = function (application) {
         var dadosForm = req.body;
         console.log('dados recebidos', dadosForm);
 
-        req.assert('apelido', 'Nome ou Apelido é obrigatório').notEmpty();
-        req.assert('apelido', 'Nome ou Apelido deve conter entre 3 e 15 caracteres').len(3, 15);
+        // req.assert('apelido', 'Nome ou Apelido é obrigatório').notEmpty();
+        // req.assert('apelido', 'Nome ou Apelido deve conter entre 3 e 15 caracteres').len(3, 15);
 
-        var erros = req.validationErrors();
+        // var erros = req.getValidationResult()
 
-        if (erros) {
-            res.render("index", { validacao: erros });
-            return;
-        }
+        res.render('index', {validacao : {errors : []}});
+        // if (erros) {
+        //     return;
+        // }
 
-        res.render('chat');
+        // res.render('chat');
     });
 
 }

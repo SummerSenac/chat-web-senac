@@ -8,7 +8,7 @@ var consign = require('consign');
 var bodyParser = require('body-parser');
 
 /* importar o módulo do express-validator */
-var expressValidator = require('express-validator');
+// var expressValidator = require('express-validator');
 
 /* iniciar o objeto do express */
 var app = express();
@@ -24,7 +24,7 @@ app.use(express.static('./app/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 /*configurar o middleware express-validator */
-app.use(expressValidator());
+// app.use(expressValidator());
 
 /* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
 consign()
