@@ -3,8 +3,8 @@ const { body, validationResult } = require('express-validator')
 
 module.exports = function (application) {
     application.post('/chat', 
-    body('apelido').notEmpty().withMessage('Não pode ser vazio'), 
-    body('apelido').isLength({ min: 5 }).withMessage('Tem que ser maior que 5'),
+    body('apelido').notEmpty().withMessage('Faça Login'), 
+    // body('apelido').isLength({ min: 5 }).withMessage(''),
         function (req, res) {
             var dadosForm = req.body;
             console.log('dados', dadosForm);
