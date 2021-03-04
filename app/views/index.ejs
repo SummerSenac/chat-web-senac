@@ -33,7 +33,7 @@
                                 <label class="panel-login">
                                     <div class="login_result"></div>
                                 </label>
-                                <input class="form-control" placeholder="Nome ou apelido" id="apelido" name="apelido"
+                                <input type="hidden" class="form-control" placeholder="Nome ou apelido" id="apelido" name="apelido"
                                     type="text">
                                 <br></br>
                                 <input class="btn btn-lg btn-success btn-block" type="submit" id="entrar"
@@ -80,6 +80,8 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
+        document.getElementById("apelido").value = profile.getName()
+        $( "#entrar" ).click();
       }
     </script>
     <script>

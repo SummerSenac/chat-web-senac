@@ -84,17 +84,17 @@ img {
 	height:auto;
 	margin-bottom:15px;
 	padding:10px;
-	/* background:#D8F0FE; */
+	background:#D8F0FE;
 }
 
 .dialogo h4{
 	font-size:15px;
 	font-weight: bold;
-	/* color:#8B7777; */
+	color:#8B7777;
 }
 
 .dialogo p{
 	font-size:12px;
 	padding-left:15px;
-	/* color:#8B7777; */
+	color:#8B7777;
 }
