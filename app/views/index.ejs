@@ -6,14 +6,14 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id"
         content="1073052617224-05tnssgr7picqgqu4kld7v0ggng4k1dk.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js&quot; async defer></script>
-<title>Multiroom Chat</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Multiroom Chat</title>
 
-<!-- bootstrap - link cdn -->
-<link rel=" stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css&quot;
-integrity=" sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- bootstrap - link cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+        integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-< !--estilo -->
+    <!-- estilo -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -68,41 +68,41 @@ integrity=" sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmk
     </div>
     <script src="js/jquery-2.2.1.js"></script>
     <script>
-                $(document).ready(function () {
-document.getElementById("btnEntrar").style.display = "none";
+        $(document).ready(function () {
+            document.getElementById("btnEntrar").style.display = "none";
 
-setTimeout(function () {
-signOut()
-document.getElementById("apelido").value = ''
-}, 3000)
-});
+            setTimeout(function () {
+                signOut()
+                document.getElementById("apelido").value = ''
+            }, 3000)
+        });
 
-function onSignIn(googleUser) {
-// Useful data for your client-side scripts:
-var profile = googleUser.getBasicProfile();
-console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-console.log('Full Name: ' + profile.getName());
-console.log('Given Name: ' + profile.getGivenName());
-console.log('Family Name: ' + profile.getFamilyName());
-console.log("Image URL: " + profile.getImageUrl());
-console.log("Email: " + profile.getEmail());
+        function onSignIn(googleUser) {
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+            console.log('Full Name: ' + profile.getName());
+            console.log('Given Name: ' + profile.getGivenName());
+            console.log('Family Name: ' + profile.getFamilyName());
+            console.log("Image URL: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
 
-// The ID token you need to pass to your backend:
-var id_token = googleUser.getAuthResponse().id_token;
-console.log("ID Token: " + id_token);
-document.getElementById("apelido").value = profile.getName()
-document.getElementById("btnGoogle").style.display = "none";
-document.getElementById("btnEntrar").style.display = "";
-}
+            // The ID token you need to pass to your backend:
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+            document.getElementById("apelido").value = profile.getName()
+            document.getElementById("btnGoogle").style.display = "none";
+            document.getElementById("btnEntrar").style.display = "";
+        }
     </script>
     <script>
-function signOut() {
-var auth2 = gapi.auth2.getAuthInstance();
-auth2.signOut().then(function () {
-console.log('User signed out.');
-});
-}
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
     </script>
-    </body>
+</body>
 
 </html>
