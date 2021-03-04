@@ -1,12 +1,8 @@
 {
-  "name": "multiroom_chat",
+  "name": "chat-web-senac",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "engines": {
-    "node": "12.18.3",
-    "npm": "6.14.6"
-  },
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +15,6 @@
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "express-validator": "^6.10.0",
-    "socket.io": "^1.4.8"
+    "socket.io": "^3.1.2"
   }
 }

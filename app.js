@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('msgParaServidor', function (data) {
-
+		console.log('msg serv: ', data)
 		var avaliar = data.mensagem
 		switch (avaliar) {
 			case 'HTML':
@@ -35,12 +35,12 @@ io.on('connection', function (socket) {
 				/* dialogo */
 				socket.emit(
 					'msgParaCliente',
-					{ apelido: data.apelido, mensagem: data.mensagem }
+					{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
 				);
 		
 				socket.broadcast.emit(
 					'msgParaCliente',
-					{ apelido: data.apelido, mensagem: data.mensagem }
+					{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
 				);
 		
 				/* participantes */

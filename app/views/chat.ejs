@@ -116,36 +116,43 @@
 		var socket = io('http://localhost:5000');
 		// var socket = io('https://henning-zapfake.herokuapp.com/');
 
+		function pegaHora() {
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			return h + ":" + m
+		}
 		$('#enviar_mensagem').click(function () {
-
 			socket.emit(
 				'msgParaServidor',
 				{
 					apelido: $('#apelido').val(),
 					mensagem: $('#mensagem').val(),
+					hora: pegaHora(),
 					apelido_atualizado_nos_clientes: $('#apelido_atualizado_nos_clientes').val()
 				}
 			);
-
 			$('#mensagem').val("");
 			$('#apelido_atualizado_nos_clientes').val(1);
 		});
-
-
 		socket.on('msgParaCliente', function (data) {
-			console.log('recebido: ',data);
+			console.log('recebido: ', data);
 			var html = '';
 
 			if (data.apelido === $('#apelido').val()) {
 				html += '<div class="dialogo">';
-				html += '<h4>' + data.apelido + '</h4>';
-				html += '<p>' + data.mensagem + '</p>';
-				html += '</div>';
+					html += '<h4>' + data.apelido + '   ' +
+				'<span style="position: absolute; right: 0px; margin-right: 104px;">' +
+				data.hora + '</span>' + '</h4>';
+			html += '<p>' + data.mensagem + '</p>';		
+			html += '</div>';
 			} else {
 				html += '<div class="dialogo2">';
-				html += '<h4>' + data.apelido + '</h4>';
-				html += '<p>' + data.mensagem + '</p>';
-				html += '</div>';
+					html += '<h4>' + data.apelido + '   ' +
+				'<span style="position: absolute; right: 0px; margin-right: 24px;">' +
+				data.hora + '</span>' + '</h4>';
+			html += '<p>' + data.mensagem + '</p>';		
+			html += '</div>';
 			}
 
 			$('#dialogos').append(html);
