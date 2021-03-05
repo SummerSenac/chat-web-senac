@@ -16,29 +16,7 @@
 	<!-- estilo -->
 	<link href="css/style.css" rel="stylesheet">
 
-	<script type="text/javascript">
 
-		$(document).ready(function () {
-			$("#exibe_chat").click(function () {
-				$("#conversa").show();
-				$("#participantes").hide();
-				ocultaNavbar();
-			});
-
-			$("#exibe_participantes").click(function () {
-				$("#participantes").show();
-				$("#conversa").hide();
-				ocultaNavbar();
-			});
-		});
-
-		function ocultaNavbar() {
-			$("#btn_navbar_toggle").attr("class", "navbar-toggle collapsed");
-			$("#navbar-collapse-1").attr("class", "navbar-collapse collapse");
-			$("#btn_navbar_toggle").attr("aria-expanded", "false");
-			$("#navbar-collapse-1").attr("aria-expanded", "false");
-		}
-	</script>
 </head>
 
 <body>
@@ -135,9 +113,12 @@
 			$('#mensagem').val("");
 			$('#apelido_atualizado_nos_clientes').val(1);
 		});
+
 		socket.on('msgParaCliente', function (data) {
 			console.log('recebido: ', data);
+
 			var html = '';
+
 			html += '<div class="dialogo">';
 			html += '<h4>' + data.apelido + '   ' +
 				'<span style="position: absolute; right: 0px; margin-right: 24px;">' +
@@ -145,6 +126,7 @@
 			html += '<p>' + data.mensagem + '</p>';
 			// html += '<p>' + data.hora + '</p>';
 			html += '</div>';
+
 			$('#dialogos').append(html);
 			window.scrollTo(0, document.body.scrollHeight);
 		});
@@ -152,14 +134,55 @@
 
 		socket.on('participantesParaCliente', function (data) {
 			var html = '';
+			var user = [];
 
 			html += '<span class="participante">';
 			html += '<img src="images/ico_usuario.png">';
 			html += data.apelido;
 			html += '</span>';
+			
+			for (let i = 0; i < data.length; i++) {
+				user.push(data.apelido);
+				
+			}
+			while (user.length > 0) {
+				html += user.pop();
+			}
+			return html;
+		
+
 
 			$('#pessoas').append(html);
+
 		});
+
+		
+
+
+
+	</script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$("#exibe_chat").click(function () {
+				$("#conversa").show();
+				$("#participantes").hide();
+				ocultaNavbar();
+			});
+
+			$("#exibe_participantes").click(function () {
+				$("#participantes").show();
+				$("#conversa").hide();
+				ocultaNavbar();
+			});
+		});
+
+		function ocultaNavbar() {
+			$("#btn_navbar_toggle").attr("class", "navbar-toggle collapsed");
+			$("#navbar-collapse-1").attr("class", "navbar-collapse collapse");
+			$("#btn_navbar_toggle").attr("aria-expanded", "false");
+			$("#navbar-collapse-1").attr("aria-expanded", "false");
+		}
 	</script>
 </body>
 
