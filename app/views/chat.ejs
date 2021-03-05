@@ -89,7 +89,6 @@
 		</div>
 	</div>
 
-
 	<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
 		<div class="container">
 			<div class="panel-body campo-mensagem">
@@ -100,8 +99,7 @@
 						<input type="hidden" value="<%=dadosForm.apelido%>" id="apelido">
 						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
 						<span class="input-group-btn">
-							<button class="btn btn-default" onclick="enviarMsg()" type="button"
-								id="enviar_mensagem">></button>
+							<button class="btn btn-default" type="button" id="enviar_mensagem">></button>
 						</span>
 					</div>
 				</div>
@@ -116,46 +114,55 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 		var socket = io('http://localhost:5000');
+		// var socket = io('https://henning-zapfake.herokuapp.com/');
 
-
-		var input = document.getElementById("mensagem");
-		input.addEventListener("keyup", function (event) {
-			if (event.keyCode === 13) {
-				event.preventDefault();
-				document.getElementById("enviar_mensagem").click();
-			}
-		});
-
-		function enviarMsg () {
+		function pegaHora() {
+			var d = new Date();
+			var h = d.getHours();
+			var m = d.getMinutes();
+			return h + ":" + m
+		}
+		$('#enviar_mensagem').click(function () {
 			socket.emit(
 				'msgParaServidor',
 				{
 					apelido: $('#apelido').val(),
 					mensagem: $('#mensagem').val(),
+					hora: pegaHora(),
 					apelido_atualizado_nos_clientes: $('#apelido_atualizado_nos_clientes').val()
 				}
 			);
-
 			$('#mensagem').val("");
 			$('#apelido_atualizado_nos_clientes').val(1);
-		};
-
-
+		});
 		socket.on('msgParaCliente', function (data) {
+			console.log('recebido: ', data);
 			var html = '';
-
 			html += '<div class="dialogo">';
-			html += '<h4>' + data.apelido + '</h4>';
+			html += '<h4>' + data.apelido + '   ' +
+				'<span style="position: absolute; right: 0px; margin-right: 24px;">' +
+				data.hora + '</span>' + '</h4>';
 			html += '<p>' + data.mensagem + '</p>';
+			// html += '<p>' + data.hora + '</p>';
 			html += '</div>';
-
 			$('#dialogos').append(html);
-
 			window.scrollTo(0, document.body.scrollHeight);
 		});
 
 
-		socket.on('participantesParaCliente', function (data) {
+		var chats = []
+
+		socket.on('msgParaCliente', function (data) {
+			// chats.push(localStorage.getItem('conversas'))
+			chats.push(data)
+			console.log('arrar', chats)
+			localStorage.setItem('conversas', JSON.stringify(chats))
+
+			var conversas = JSON.parse(localStorage.getItem('conversas'))
+
+			console.log('dados vindos: ', conversas);
+
+
 			var html = '';
 
 			html += '<span class="participante">';
