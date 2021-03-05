@@ -6,10 +6,21 @@
 		<title>Multiroom Chat</title>
 		
 		<!-- bootstrap - link cdn -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
 	
 		<!-- estilo -->
 		<link href="css/style.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('../../sw.js')
+                    .then(function () {
+                        console.log('Service registrado')
+                    })
+                    .catch(function () {
+                        console.log('Service falhou')
+                    })
+            }
+        </script>
 	</head>
 
 	<body>
@@ -20,7 +31,7 @@
                     <div class="panel panel-default">
                     	<div class="panel-heading">                                
                             <div class="row-fluid user-row">
-                                <img src="images/multiroom_chat_2.png" class="img-responsive" alt="Multiroom Chat"/>
+                                <img src="img/multiroom_chat_2.png" class="img-responsive" alt="Multiroom Chat"/>
                             </div>
                         </div>
                         <div class="panel-body">

@@ -1,0 +1,24 @@
+{
+    "name" : "curriculoAlessandra",
+    "short_name" : "cvAle",
+    "background_color" : "#00897b",
+    "theme_color" : "#00897b",
+    "display": "standalone",
+    "start_url" : "/",
+    "icons" : [
+        {
+        "src" : "img/login-bg.jpg",
+        "sizes" : "96X96",
+        "type" : "image/png"
+    },{
+        "src" : "img/multiroom_chat_2.png",
+        "sizes" : "194x194",
+        "type" : "image/png"
+    },{
+        "src" : "img/multiroom_chat.png",
+        "sizes" : "36x36",
+        "type" : "image/png"
+    }
+]
+
+}
