@@ -20,10 +20,11 @@ io.on('connection', function (socket) {
 
 	socket.on('msgParaServidor', function (data) {
 		console.log(data)
-		var {apelido, mensagem} = data
+		var {apelido, mensagem, imagem} = data
 		var data2 = {
 			apelido, 
-			mensagem
+			mensagem,
+			imagem
 		}
 
 		DataService.create(data2)
@@ -49,12 +50,12 @@ io.on('connection', function (socket) {
 				/* dialogo */
 				socket.emit(
 					'msgParaCliente',
-					{ apelido: data.apelido, mensagem: data.mensagem }
+					{ apelido: data.apelido, mensagem: data.mensagem, imagem: data.imagem }
 				);
 
 				socket.broadcast.emit(
 					'msgParaCliente',
-					{ apelido: data.apelido, mensagem: data.mensagem }
+					{ apelido: data.apelido, mensagem: data.mensagem, apelido: data.apelido, imagem: data.imagem }
 				);
 
 				/* participantes */

@@ -36,6 +36,8 @@
                                 </label>
                                 <input type="hidden" class="form-control" placeholder="Nome ou apelido" id="apelido"
                                     name="apelido" type="text">
+                                <input type="hidden" class="form-control" placeholder="Nome ou apelido" id="imagem"
+                                    name="imagem" type="text">
                                 <br></br>
                                 <input id='btnEntrar' class="btn btn-lg btn-success btn-block" type="submit"
                                     value="Entrar »">
@@ -91,6 +93,7 @@
             var id_token = googleUser.getAuthResponse().id_token;
             console.log("ID Token: " + id_token);
             document.getElementById("apelido").value = profile.getName()
+            document.getElementById("imagem").value = profile.getImageUrl()
             document.getElementById("btnGoogle").style.display = "none";
             document.getElementById("btnEntrar").style.display = "";
         }

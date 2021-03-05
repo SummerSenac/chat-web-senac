@@ -101,6 +101,7 @@
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
 						<input type="hidden" value="<%=dadosForm.apelido%>" id="apelido">
+						<input type="hidden" value="<%=dadosForm.imagem%>" id="imagem">
 						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="button" id="enviar_mensagem">></button>
@@ -126,7 +127,8 @@
 				'msgParaServidor',
 				{
 					apelido: $('#apelido').val(),
-					mensagem: $('#mensagem').val(),
+					mensagem: $('#mensagem').val(), 
+					imagem: $('#imagem').val(), 
 					apelido_atualizado_nos_clientes: $('#apelido_atualizado_nos_clientes').val()
 				}
 			);
@@ -142,6 +144,7 @@
 			html += '<div class="dialogo">';
 			html += '<h4>' + data.apelido + '</h4>';
 			html += '<p>' + data.mensagem + '</p>';
+			html += '<img src=' + data.imagem +' width = "50">';
 			html += '</div>';
 
 			$('#dialogos').append(html);

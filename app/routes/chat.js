@@ -19,7 +19,7 @@ module.exports = function (application) {
             // emitindo mesagem para clientes
             application.get('io').emit(
                 'msgParaCliente',
-                { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat' }
+                { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat', imagem: dadosForm.imagem }
             )
 
             res.render("chat", { dadosForm: dadosForm });
