@@ -1,0 +1,22 @@
+[
+    {
+        "qst" : "HTML",
+        "asw" : "<pre>HTML é uma linguagem de estrutura</pre>"
+    },
+    {
+        "qst" : "CSS",
+        "asw" : "<pre>CSS é uma linguagem de estilo</pre>"
+    },
+    {
+        "qst" : "JS",
+        "asw" : "<pre>JS é uma linguagem de progrmação</pre>"
+    },
+    {
+        "qst" : "NODE",
+        "asw" : "<pre>NODE é uma linguagem de servidor</pre>"
+    },
+    {
+        "qst" : "COMANDOS GIT",
+        "asw" : "<pre>git add . 'É para adicionar a arvore do git' <br> git push 'É para enviar os arquivos</pre>"
+    }
+]

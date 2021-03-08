@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,6 +15,12 @@
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "express-validator": "^6.10.0",
+<<<<<<< HEAD
     "socket.io": "^3.1.2"
+=======
+    "firebase": "^7.24.0",
+    "nodemon": "^2.0.7",
+    "socket.io": "^1.4.8"
+>>>>>>> 0f898bc8dd9b2c6e1dd9c106a25a160fae7fa357
   }
 }
