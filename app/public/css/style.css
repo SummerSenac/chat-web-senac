@@ -80,6 +80,7 @@ img {
 }
 
 .dialogo{
+    margin-left: -82px;
 	width:100%;
 	height:auto;
 	margin-bottom:15px;
@@ -87,13 +88,21 @@ img {
 	background:#D8F0FE;
 }
 
-.dialogo h4{
+.dialogo2{
+	width:100%;
+	height:auto;
+	margin-bottom:15px;
+	padding:10px;
+	background:#97ffd8b5;
+}
+
+.dialogo .dialogo2 h4{
 	font-size:15px;
 	font-weight: bold;
 	color:#8B7777;
 }
 
-.dialogo p{
+.dialogo .dialogo2 p{
 	font-size:12px;
 	padding-left:15px;
 	color:#8B7777;

@@ -73,7 +73,7 @@
 	<div class="container">
 		<div class="row conversa" id="conversa">
 			<div class="col-md-1"></div>
-			<div class="col-md-10" id="dialogos">
+			<div style="margin: 80px;" class="col-md-10" id="dialogos">
 			</div>
 
 			<div class="col-md-1"></div>
@@ -141,13 +141,24 @@
 		socket.on('msgParaCliente', function (data) {
 			console.log('recebido: ', data);
 			var html = '';
-			html += '<div class="dialogo">';
-			html += '<h4>' + data.apelido + '   ' +
+
+			if (data.apelido === $('#apelido').val()) {
+				html += '<div class="dialogo">';
+					html += '<h4>' + data.apelido + '   ' +
+				'<span style="position: absolute; right: 0px; margin-right: 104px;">' +
+				data.hora + '</span>' + '</h4>';
+			html += '<p>' + data.mensagem + '</p>';		
+			html += '</div>';
+			} else {
+				html += '<div class="dialogo2">';
+					html += '<h4>' + data.apelido + '   ' +
 				'<span style="position: absolute; right: 0px; margin-right: 24px;">' +
 				data.hora + '</span>' + '</h4>';
 			html += '<p>' + data.mensagem + '</p>';
-			html += '<img src=' + data.imagem +' width = "50">';
+			html += '<img src=' + data.imagem +' width = "50">';	
 			html += '</div>';
+			}
+
 			$('#dialogos').append(html);
 			window.scrollTo(0, document.body.scrollHeight);
 		});
