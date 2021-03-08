@@ -25,7 +25,52 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row-fluid user-row">
-                            <img src="images/multiroom_chat_2.png" class="img-responsive" alt="Multiroom Chat" />
+                            <img src="img/multiroom_chat_2.png" class="img-responsive" alt="Multiroom Chat" />
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Multiroom Chat</title>
+		
+		<!-- bootstrap - link cdn -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+	
+		<!-- estilo -->
+		<link href="css/style.css" rel="stylesheet">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('../../sw.js')
+                    .then(function () {
+                        console.log('Service registrado')
+                    })
+                    .catch(function () {
+                        console.log('Service falhou')
+                    })
+            }
+        </script>
+	</head>
+
+	<body>
+
+		<div class="container">
+            <div class="row vertical-offset-80">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">                                
+                            <div class="row-fluid user-row">
+                                <img src="img/multiroom_chat_2.png" class="img-responsive" alt="Multiroom Chat"/>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form accept-charset="UTF-8" role="form" class="form-signin" action="/chat" method="post">
+                                <fieldset>
+                                    <label class="panel-login">
+                                        <div class="login_result"></div>
+                                    </label>
+                                    <input class="form-control" placeholder="Nome ou apelido" id="apelido" name="apelido" type="text">
+                                    <br></br>
+                                    <input class="btn btn-lg btn-success btn-block" type="submit" id="entrar" value="Entrar »">
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                     <div class="panel-body">
