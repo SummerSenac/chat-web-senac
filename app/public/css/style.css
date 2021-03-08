@@ -107,6 +107,7 @@ img {
 	padding-left:15px;
 	color:#8B7777;
 }
+<<<<<<< HEAD
 
 /* Estilo iOS */
 .switch__container {
@@ -164,3 +165,9 @@ img {
     transform: translateX(60px);
   }
   
+=======
+#emojiPickerWrap {margin:10px 0 0 0;}
+.tooltip:not(.shown) {
+    display: none;
+}
+>>>>>>> b8f85197423ca8c7105e876fac8ad29e6f068a5d
