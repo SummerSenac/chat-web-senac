@@ -63,12 +63,12 @@ io.on('connection', function (socket) {
 			/* dialogo */
 			socket.emit(
 				'msgParaCliente',
-				{ apelido: data.apelido, mensagem: data.mensagem }
+				{ apelido: data.apelido, mensagem: 'Acabou de entrar', hora: data.hora }
 			);
 
 			socket.broadcast.emit(
 				'msgParaCliente',
-				{ apelido: data.apelido, mensagem: data.mensagem }
+				{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
 			);
 
 			/* participantes */

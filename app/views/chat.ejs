@@ -106,12 +106,12 @@
 			</div>
 		</div>
 	</nav>
-</body>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 		crossorigin="anonymous"></script>
 
 	<script src="/socket.io/socket.io.js"></script>
+
 	<script>
 		var socket = io('http://localhost:5000');
 		// var socket = io('https://henning-zapfake.herokuapp.com/');
@@ -123,6 +123,7 @@
 			return h + ":" + m
 		}
 		$('#enviar_mensagem').click(function () {
+			console.log('enviando')
 			socket.emit(
 				'msgParaServidor',
 				{
@@ -156,9 +157,10 @@
 			html += '<img src="images/ico_usuario.png">';
 			html += data.apelido;
 			html += '</span>';
-		var chats = []
-
+		})
+		
 		socket.on('msgParaCliente', function (data) {
+			var chats = []
 			// chats.push(localStorage.getItem('conversas'))
 			chats.push(data)
 			console.log('arrar', chats)
@@ -179,5 +181,7 @@
 			$('#pessoas').append(html);
 		});
 	</script>
+
+</body>
 
 </html>
