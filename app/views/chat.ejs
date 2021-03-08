@@ -43,8 +43,6 @@
 
 <body>
 
-<<<<<<< HEAD
-
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -77,45 +75,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10" id="dialogos">
 			</div>
-=======
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1"
-				id="btn_navbar_toggle">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Multiroom Chat</a>
-		</div>
 
-
-		<div class="collapse navbar-collapse" id="navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li>
-					<a href="#" id="exibe_chat">Chat</a>
-				</li>
-				<li>
-					<a href="#" id="exibe_participantes">Participantes</a>
-				</li>
-				<li>
-					<a href="/" onclick="signOut();">Desconectar</a>
-				</li>
-			</ul>
-
-		</div>
-	</div>
-
-	</nav>
-
-	<div class="container">
-		<div class="row conversa" id="conversa">
-			<div class="col-md-1"></div>
-			<div class="col-md-10" id="dialogos">
-			</div>
->>>>>>> 0f898bc8dd9b2c6e1dd9c106a25a160fae7fa357
 			<div class="col-md-1"></div>
 
 		</div>
@@ -146,7 +106,7 @@
 			</div>
 		</div>
 	</nav>
-
+</body>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
 		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 		crossorigin="anonymous"></script>
@@ -189,8 +149,26 @@
 			window.scrollTo(0, document.body.scrollHeight);
 		});
 
-
 		socket.on('participantesParaCliente', function (data) {
+			var html = '';
+
+			html += '<span class="participante">';
+			html += '<img src="images/ico_usuario.png">';
+			html += data.apelido;
+			html += '</span>';
+		var chats = []
+
+		socket.on('msgParaCliente', function (data) {
+			// chats.push(localStorage.getItem('conversas'))
+			chats.push(data)
+			console.log('arrar', chats)
+			localStorage.setItem('conversas', JSON.stringify(chats))
+
+			var conversas = JSON.parse(localStorage.getItem('conversas'))
+
+			console.log('dados vindos: ', conversas);
+
+
 			var html = '';
 
 			html += '<span class="participante">';
@@ -201,6 +179,5 @@
 			$('#pessoas').append(html);
 		});
 	</script>
-</body>
 
 </html>

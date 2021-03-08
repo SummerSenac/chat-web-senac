@@ -2,7 +2,15 @@
   "name": "chat-web-senac",
   "version": "1.0.0",
   "description": "",
+<<<<<<< HEAD
   "main": "app.js",
+=======
+  "main": "index.js",
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6"
+  },
+>>>>>>> a2ba87323736b7d5296081cfd32f6c04918ad609
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
