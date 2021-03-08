@@ -19,73 +19,73 @@ io.on('connection', function (socket) {
 	socket.on('disconnect', function () {
 		console.log('Usuário desconectou');
 	});
+})
 
-	socket.on('msgParaServidor', function (data) {
-		console.log('msg serv: ', data)
-		console.log(data)
-		var {apelido, mensagem, imagem} = data
-		var data2 = {
-			apelido, 
-			mensagem,
-			imagem
-		}
+socket.on('msgParaServidor', function (data) {
+	console.log('msg serv: ', data)
+	console.log(data)
+	var { apelido, mensagem, imagem } = data
+	var data2 = {
+		apelido,
+		mensagem,
+		imagem
+	}
 
-		DataService.create(data2)
-			.then(() => {
-				console.log("Created new item successfully!");
-				this.submitted = true;
-			})
-			.catch(e => {
-				console.log(e);
-			});
+	DataService.create(data2)
+		.then(() => {
+			console.log("Created new item successfully!");
+			this.submitted = true;
+		})
+		.catch(e => {
+			console.log(e);
+		});
 
 
-		var avaliar = data.mensagem
+	var avaliar = data.mensagem
 
-		function enviarMSG(msg) {
-			socket.emit(
-				'msgParaCliente',
-				{ apelido: 'Bot Web', mensagem: msg }
-			);
-		}
+	function enviarMSG(msg) {
+		socket.emit(
+			'msgParaCliente',
+			{ apelido: 'Bot Web', mensagem: msg }
+		);
+	}
 
-		if (avaliar.search('@') >= 0) {
-			var pergunta = avaliar.replace('@', '')
-			// console.log('Sim é para o bot');
-			for (msg of msgBot) {
-				if (msg.qst === pergunta) {
-					enviarMSG(msg.asw)
-				}
+	if (avaliar.search('@') >= 0) {
+		var pergunta = avaliar.replace('@', '')
+		// console.log('Sim é para o bot');
+		for (msg of msgBot) {
+			if (msg.qst === pergunta) {
+				enviarMSG(msg.asw)
 			}
+		}
 
-		} else {
+	} else {
 
 
-			/* dialogo */
+		/* dialogo */
+		socket.emit(
+			'msgParaCliente',
+			{ apelido: data.apelido, mensagem: 'Acabou de entrar', hora: data.hora }
+		);
+
+		socket.broadcast.emit(
+			'msgParaCliente',
+			{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
+		);
+
+		/* participantes */
+		if (parseInt(data.apelido_atualizado_nos_clientes) == 0) {
 			socket.emit(
 				'msgParaCliente',
-				{ apelido: data.apelido, mensagem: 'Acabou de entrar', hora: data.hora }
+				{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
 			);
 
 			socket.broadcast.emit(
 				'msgParaCliente',
 				{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
 			);
-
-			/* participantes */
-			if (parseInt(data.apelido_atualizado_nos_clientes) == 0) {
-				socket.emit(
-					'msgParaCliente',
-					{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
-				);
-
-				socket.broadcast.emit(
-					'msgParaCliente',
-					{ apelido: data.apelido, mensagem: data.mensagem, hora: data.hora }
-				);
-			}
-
 		}
 
+	}
 
-});
+})

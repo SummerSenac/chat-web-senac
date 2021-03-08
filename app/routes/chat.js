@@ -1,7 +1,7 @@
 module.exports = function (application) {
     application.post('/chat',
-        body('apelido').notEmpty().withMessage('Não pode ser vazio'),
-        body('apelido').isLength({ min: 5 }).withMessage('Tem que ser maior que 5'),
+        // body('apelido').notEmpty().withMessage('Não pode ser vazio'),
+        // body('apelido').isLength({ min: 5 }).withMessage('Tem que ser maior que 5'),
         function (req, res) {
             var dadosForm = req.body;
             console.log('dados', dadosForm);
@@ -32,23 +32,11 @@ module.exports = function (application) {
 
         // var erros = req.validationErrors();
 
-<<<<<<< HEAD
         application.get('io').emit(
             'msgParaCliente',
             { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat', hora: pegaHora() }
         )
 
-=======
-        // if (erros) {
-        //     res.render("index", { validacao: erros })
-        //     return;
-        // }
-
-        application.get('io').emit(
-            'msgParaCliente',
-            { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat' }
-        )
->>>>>>> 85dcc860e77c5a583bc4f6e2bc75fd0a44efcac5
         res.render("chat", { dadosForm: dadosForm });
     });
 }
