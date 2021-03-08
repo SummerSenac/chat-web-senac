@@ -26,7 +26,7 @@ module.exports = function (application) {
 
             application.get('io').emit(
                 'msgParaCliente',
-                { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat', hora: pegaHora() }
+                { apelido: dadosForm.apelido, mensagem: ' acabou de entrar no chat', hora: pegaHora(), imagem: dadosForm.imagem }
 
             )
 

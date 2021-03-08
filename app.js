@@ -23,10 +23,11 @@ io.on('connection', function (socket) {
 	socket.on('msgParaServidor', function (data) {
 		console.log('msg serv: ', data)
 		console.log(data)
-		var { apelido, mensagem } = data
+		var {apelido, mensagem, imagem} = data
 		var data2 = {
-			apelido,
-			mensagem
+			apelido, 
+			mensagem,
+			imagem
 		}
 
 		DataService.create(data2)
