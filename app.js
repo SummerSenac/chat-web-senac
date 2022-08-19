@@ -7,7 +7,8 @@ var server = app.listen(process.env.PORT || 5000, function () {
 	console.log('Servidor online');
 })
 
-var io = require('socket.io').listen(server);
+var io = require('socket.io')
+io.listen(server);
 
 app.set('io', io);
 
